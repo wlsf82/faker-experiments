@@ -1,0 +1,14 @@
+{
+  "name": "faker-experiments",
+  "version": "1.0.0",
+  "description": "protractor tests to experiment faker.js",
+  "main": "protractor.conf.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Walmyr Filho <wlsf82@gmail.com> (http://walmyr-filho.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "faker": "^3.1.0"
+  }
+}
