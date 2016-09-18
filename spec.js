@@ -1,7 +1,7 @@
 'use strict';
 
 const faker = require('faker');
-const CreateBlogPost = require('./page-objects/create-blog-post.pageObject.js');
+const CreateBlogPost = require('./page-objects/create-blog-post.po.js');
 
 describe('Choko - Create account', () => {
   it('password not match', () => {
@@ -45,7 +45,7 @@ describe('Choko - Blog', () => {
   it('Create blog post without permission, passing 4 new lines and 6 paragraphs in the body', () => {
     browser.get('create/blog');
 
-    createBlogPost.name.sendKeys(ramdonName);
+    createBlogPost.name.sendKeys(randomName);
 
     createBlogPost.title.click().then(
       (title) => { createBlogPost.title.sendKeys(randomTitle); }
