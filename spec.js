@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
-const faker          = require('faker');
+const faker = require('faker');
 const CreateBlogPost = require('./page-objects/create-blog-post.pageObject.js');
 
 
 describe('Choko - Create account', () => {
-  xit('password not match', () => {
+  it('password not match', () => {
     const randomEmail = faker.internet.email();
     const randomName = faker.name.findName();
     const randomPass1 = faker.internet.password();
@@ -25,19 +25,16 @@ describe('Choko - Create account', () => {
 });
 
 describe('Choko - Blog', () => {
-  // instantiating a new instance of CreateBlogPost
   const createBlogPost = new CreateBlogPost();
 
-  // defining references to faker and exposing those throughout the "Choko - Blog" describe block
-  const ramdonName = faker.lorem.word();
+  const randomName = faker.lorem.word();
   const randomTitle = faker.random.words();
-  // creating a reference for the lorem namespace
   const randomText = faker.lorem;
 
-  xit('try to create blog post without permission', () => {
+  it('try to create blog post without permission', () => {
     browser.get('create/blog');
 
-    createBlogPost.name.sendKeys(ramdonName);
+    createBlogPost.name.sendKeys(randomName);
     createBlogPost.title.sendKeys(randomTitle);
     createBlogPost.body.sendKeys(randomText);
     createBlogPost.save.click();

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 module.exports.config = {
   directConnect: true,
@@ -8,6 +8,7 @@ module.exports.config = {
   specs: ['spec.js'],
 
   capabilities: { 'browserName': 'chrome' },
+
   onPrepare() {
   	browser.driver.manage().window().maximize();
   }
