@@ -28,7 +28,8 @@ describe('Choko - Blog', () => {
 
   const randomName = faker.lorem.word();
   const randomTitle = faker.random.words();
-  const randomText = faker.lorem;
+  const randomText = faker.lorem.lines();
+  const randomSentence = faker.lorem.sentence(99, 99);
 
   it('try to create blog post without permission', () => {
     browser.get('create/blog');
@@ -40,19 +41,15 @@ describe('Choko - Blog', () => {
 
     expect(element(by.repeater('error in errors')).isDisplayed()).toBe(true);
     expect(element.all(by.repeater('error in errors')).getText()).toContain('You don\'t have permission to access this page.');
+    browser.manage().deleteAllCookies();
   });
 
-  it('Create blog post without permission, passing 4 new lines and 6 paragraphs in the body', () => {
+  it('Create blog post without permission', () => {
     browser.get('create/blog');
 
     createBlogPost.name.sendKeys(randomName);
-
-    createBlogPost.title.click().then(
-      (title) => { createBlogPost.title.sendKeys(randomTitle); }
-    );
-
-    createBlogPost.body.sendKeys(randomText.lines(4));
-    createBlogPost.body.sendKeys(randomText.paragraphs(6, ' '));
+    createBlogPost.title.sendKeys(randomTitle);
+    createBlogPost.body.sendKeys(randomSentence);
     createBlogPost.save.click();
 
     expect(element(by.repeater('error in errors')).isDisplayed()).toBe(true);
