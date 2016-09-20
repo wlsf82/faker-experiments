@@ -41,7 +41,6 @@ describe('Choko - Blog', () => {
 
     expect(element(by.repeater('error in errors')).isDisplayed()).toBe(true);
     expect(element.all(by.repeater('error in errors')).getText()).toContain('You don\'t have permission to access this page.');
-    browser.manage().deleteAllCookies();
   });
 
   it('Create blog post without permission', () => {
