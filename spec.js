@@ -1,6 +1,7 @@
 'use strict';
 
 const faker = require('faker');
+const CreateBlogPost = require('./page-objects/create-blog-post.po.js');
 
 describe('Choko - Create account', () => {
   it('password not match', () => {
@@ -23,17 +24,32 @@ describe('Choko - Create account', () => {
 });
 
 describe('Choko - Blog', () => {
-  it('try to create blog post without permission', () => {
-    const randomName = faker.lorem.word();
-    const randomTitle = faker.lorem.words();
-    const randomText = faker.lorem.sentences();
+  const createBlogPost = new CreateBlogPost();
 
+  const randomName = faker.lorem.word();
+  const randomTitle = faker.random.words();
+  const randomText = faker.lorem.lines();
+  const randomSentence = faker.lorem.sentence(99, 99);
+
+  it('try to create blog post without permission', () => {
     browser.get('create/blog');
 
-    element(by.id('element-type-blog-name')).sendKeys(randomName);
-    element(by.id('element-type-blog-title')).sendKeys(randomTitle);
-    element(by.className('note-editable')).sendKeys(randomText);
-    element(by.id('element-type-blog-submit')).click();
+    createBlogPost.name.sendKeys(randomName);
+    createBlogPost.title.sendKeys(randomTitle);
+    createBlogPost.body.sendKeys(randomText);
+    createBlogPost.save.click();
+
+    expect(element(by.repeater('error in errors')).isDisplayed()).toBe(true);
+    expect(element.all(by.repeater('error in errors')).getText()).toContain('You don\'t have permission to access this page.');
+  });
+
+  it('Create blog post without permission', () => {
+    browser.get('create/blog');
+
+    createBlogPost.name.sendKeys(randomName);
+    createBlogPost.title.sendKeys(randomTitle);
+    createBlogPost.body.sendKeys(randomSentence);
+    createBlogPost.save.click();
 
     expect(element(by.repeater('error in errors')).isDisplayed()).toBe(true);
     expect(element.all(by.repeater('error in errors')).getText()).toContain('You don\'t have permission to access this page.');
