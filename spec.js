@@ -4,15 +4,29 @@ const faker = require('faker');
 const CreateBlogPost = require('./page-objects/create-blog-post.po.js');
 
 describe('Choko - Create account', () => {
-  it('password not match', () => {
-    const randomEmail = faker.internet.email();
-    const randomName = faker.name.findName();
-    const randomPass1 = faker.internet.password();
-    const randomPass2 = faker.internet.password();
+  const randomEmail = faker.internet.email();
+  const randomName = faker.name.findName();
+  const randomPass1 = faker.internet.password();
+  const randomPass2 = faker.internet.password();
+  const defaultEmail = faker.internet.email(randomName, randomName, 'choko.org');
 
+  it('password not match', () => {
     browser.get('create-account');
 
     element(by.id('element-create-account-email')).sendKeys(randomEmail);
+    element(by.id('element-create-account-username')).sendKeys(randomName);
+    element(by.id('element-create-account-password')).sendKeys(randomPass1);
+    element(by.id('element-create-account-password-confirm')).sendKeys(randomPass2);
+    element(by.id('element-create-account-submit')).click();
+
+    expect(element(by.repeater('error in errors')).isDisplayed()).toBe(true);
+    expect(element(by.repeater('error in errors')).getText()).toEqual('Passwords must match.');
+  });
+
+  it('Choko - Create account', () => {
+    browser.get('create-account');
+
+    element(by.id('element-create-account-email')).sendKeys(defaultEmail);
     element(by.id('element-create-account-username')).sendKeys(randomName);
     element(by.id('element-create-account-password')).sendKeys(randomPass1);
     element(by.id('element-create-account-password-confirm')).sendKeys(randomPass2);
