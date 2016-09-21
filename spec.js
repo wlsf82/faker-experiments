@@ -23,7 +23,7 @@ describe('Choko - Create account', () => {
     expect(element(by.repeater('error in errors')).getText()).toEqual('Passwords must match.');
   });
 
-  it('Choko - Create account', () => {
+  it('password not match, using defaultEmail set to "choko.org"', () => {
     browser.get('create-account');
 
     element(by.id('element-create-account-email')).sendKeys(defaultEmail);
