@@ -11,10 +11,10 @@ class CreateAccountPage {
   }
 
   createAccount(userData) {
-    this.emailField.sendKeys(userData.randomEmail);
-    this.usernameField.sendKeys(userData.randomName);
-    this.passwordField.sendKeys(userData.randomPassword);
-    this.confirmPasswordField.sendKeys(userData.randomPassword2);
+    this.emailField.sendKeys(userData.email);
+    this.usernameField.sendKeys(userData.name);
+    this.passwordField.sendKeys(userData.password);
+    this.confirmPasswordField.sendKeys(userData.password2);
     this.createAccountButton.click();
   }
 

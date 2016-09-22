@@ -10,9 +10,9 @@ class CreateBlogPostPage {
   }
 
   createPost(blogData) {
-    this.nameField.sendKeys(blogData.randomName);
-    this.titleField.sendKeys(blogData.randomTitle);
-    this.bodyField.sendKeys(blogData.randomText);
+    this.nameField.sendKeys(blogData.name);
+    this.titleField.sendKeys(blogData.title);
+    this.bodyField.sendKeys(blogData.text);
     this.saveButton.click();
   }
 
