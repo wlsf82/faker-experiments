@@ -1,5 +1,7 @@
 'use strict';
 
+const SpecReporter = require('jasmine-spec-reporter');
+
 module.exports.config = {
   // seleniumAddress: 'http://localhost:4444/wd/hub',
 
@@ -7,7 +9,7 @@ module.exports.config = {
 
   baseUrl: 'http://choko.org/',
 
-  specs: ['spec.js'],
+  specs: ['specs/*.spec.js'],
 
   capabilities: {
     'browserName': 'chrome',
@@ -16,5 +18,12 @@ module.exports.config = {
 
   onPrepare() {
     browser.driver.manage().window().maximize();
+
+    jasmine.getEnv().addReporter(new SpecReporter({
+      displayFailuresSummary: true,
+      displayFailedSpec: true,
+      displaySuiteNumber: true,
+      displaySpecDuration: true
+    }));
   }
 };
