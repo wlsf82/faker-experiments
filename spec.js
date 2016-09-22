@@ -10,14 +10,18 @@ const messagesPage = new MessagesPage();
 describe('Choko - Create account', () => {
   const creatAccountPage = new CreateAccountPage();
 
+  const pass = faker.internet.password();
+
   let userData = {
-    randomEmail: faker.internet.email(),
-    randomName: faker.name.findName(),
-    randomPassword: faker.internet.password(),
-    randomPassword2: faker.internet.password()
+    email: faker.internet.email(),
+    name: faker.name.findName(),
+    password: pass,
+    password2: pass
   };
 
   it('password not match', () => {
+    userData.password2 = faker.internet.password();
+
     creatAccountPage.visit();
 
     creatAccountPage.createAccount(userData);
@@ -27,7 +31,8 @@ describe('Choko - Create account', () => {
   });
 
   it('password not match, using defaultEmail set to "choko.org"', () => {
-    userData.randomEmail = faker.internet.email(userData.randomName, userData.randomName, 'choko.org');
+    userData.email = faker.internet.email(userData.randomName, userData.randomName, 'choko.org');
+    userData.password2 = faker.internet.password();
 
     creatAccountPage.visit();
 
@@ -42,9 +47,9 @@ describe('Choko - Blog', () => {
   const createBlogPostPage = new CreateBlogPostPage();
 
   let blogData = {
-    randomName: faker.lorem.word(),
-    randomTitle: faker.random.words(),
-    randomText: faker.lorem.lines()
+    name: faker.lorem.word(),
+    title: faker.random.words(),
+    text: faker.lorem.lines()
   };
 
   it('try to create blog post without permission', () => {
@@ -57,7 +62,7 @@ describe('Choko - Blog', () => {
   });
 
   it('Create blog post without permission', () => {
-    blogData.randomText = faker.lorem.sentence(99, 99);
+    blogData.text = faker.lorem.sentence(99, 99);
 
     createBlogPostPage.visit();
 
