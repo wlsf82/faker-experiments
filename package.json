@@ -9,6 +9,7 @@
   "author": "Walmyr Filho <wlsf82@gmail.com> (http://walmyr-filho.com)",
   "license": "ISC",
   "devDependencies": {
-    "faker": "^3.1.0"
+    "faker": "^3.1.0",
+    "jasmine-spec-reporter": "^2.7.0"
   }
 }
