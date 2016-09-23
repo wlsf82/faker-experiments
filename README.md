@@ -24,6 +24,7 @@ ___
 _**Observations:**_
 
 * _The tests are written using ES2015_
+* _For better maintenance, this project uses the Page Objects design pattern_ 
 * _Want to contribute? Fork this project, create your pull requests with other test samples using faker.js, and I'll appreciate reviewing then for approval_
 
 ___
