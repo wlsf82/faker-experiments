@@ -1,8 +1,8 @@
 'use strict';
 
 const faker = require('faker');
-const CreateBlogPostPage = require('../page-objects/create-blog-post.po.js');
-const MessagesPage = require('../page-objects/messages.po.js');
+const CreateBlogPostPage = require('../page-objects/create-blog-post.po');
+const MessagesPage = require('../page-objects/messages.po');
 
 describe('Choko - Blog', () => {
   const createBlogPostPage = new CreateBlogPostPage();

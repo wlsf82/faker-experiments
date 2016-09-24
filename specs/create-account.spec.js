@@ -1,8 +1,8 @@
 'use strict';
 
 const faker = require('faker');
-const CreateAccountPage = require('../page-objects/create-account.po.js');
-const MessagesPage = require('../page-objects/messages.po.js');
+const CreateAccountPage = require('../page-objects/create-account.po');
+const MessagesPage = require('../page-objects/messages.po');
 
 describe('Choko - Create account', () => {
   const creatAccountPage = new CreateAccountPage();
