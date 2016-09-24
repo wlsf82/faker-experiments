@@ -3,7 +3,7 @@
 const SpecReporter = require('jasmine-spec-reporter');
 
 module.exports.config = {
-  // seleniumAddress: 'http://localhost:4444/wd/hub',
+  seleniumAddress: 'http://localhost:4444/wd/hub',
 
   directConnect: true,
 
