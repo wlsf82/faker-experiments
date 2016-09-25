@@ -14,9 +14,11 @@ describe('Choko - Blog', () => {
     text: faker.lorem.lines()
   };
 
-  it('try to create blog post without permission', () => {
+  beforeEach(() => {
     createBlogPostPage.visit();
+  });
 
+  it('try to create blog post without permission', () => {
     createBlogPostPage.createPost(blogData);
 
     expect(messagesPage.errorMessage.isDisplayed()).toBe(true);
@@ -25,8 +27,6 @@ describe('Choko - Blog', () => {
 
   it('Create blog post without permission', () => {
     blogData.text = faker.lorem.sentence(99, 99);
-
-    createBlogPostPage.visit();
 
     createBlogPostPage.createPost(blogData);
 

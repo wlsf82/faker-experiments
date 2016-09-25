@@ -17,10 +17,12 @@ describe('Choko - Create account', () => {
     password2: pass
   };
 
+  beforeEach(() => {
+    creatAccountPage.visit();
+  });
+
   it('password not match', () => {
     userData.password2 = faker.internet.password();
-
-    creatAccountPage.visit();
 
     creatAccountPage.createAccount(userData);
 
@@ -31,8 +33,6 @@ describe('Choko - Create account', () => {
   it('password not match, using defaultEmail set to "choko.org"', () => {
     userData.email = faker.internet.email(userData.randomName, userData.randomName, 'choko.org');
     userData.password2 = faker.internet.password();
-
-    creatAccountPage.visit();
 
     creatAccountPage.createAccount(userData);
 
