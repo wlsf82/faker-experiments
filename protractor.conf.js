@@ -15,7 +15,7 @@ module.exports.config = {
     'browserName': 'chrome',
     'chromeOptions': {'args': ['--disable-extensions']},
     shardTestFiles: true,
-    maxInstances: 3
+    maxInstances: 4
   },
 
   onPrepare() {
