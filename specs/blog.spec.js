@@ -25,7 +25,7 @@ describe('Choko - Blog', () => {
     expect(messagesPage.errorMessages.getText()).toContain('You don\'t have permission to access this page.');
   });
 
-  it('Create blog post without permission', () => {
+  it('try to create blog post with big sentence without permission', () => {
     blogData.text = faker.lorem.sentence(99, 99);
 
     createBlogPostPage.createPost(blogData);
