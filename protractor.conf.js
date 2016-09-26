@@ -13,7 +13,9 @@ module.exports.config = {
 
   capabilities: {
     'browserName': 'chrome',
-    'chromeOptions': {'args': ['--disable-extensions']}
+    'chromeOptions': {'args': ['--disable-extensions']},
+    shardTestFiles: true,
+    maxInstances: 3
   },
 
   onPrepare() {
