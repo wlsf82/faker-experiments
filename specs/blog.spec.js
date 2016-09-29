@@ -14,6 +14,8 @@ describe('Choko - Blog', () => {
     text: faker.lorem.lines()
   };
 
+  const youDontHavePermissionsMsg = 'You don\'t have permission to access this page.';
+
   beforeEach(() => {
     createBlogPostPage.visit();
   });
@@ -22,7 +24,7 @@ describe('Choko - Blog', () => {
     createBlogPostPage.createPost(blogData);
 
     expect(messagesPage.errorMessage.isDisplayed()).toBe(true);
-    expect(messagesPage.errorMessages.getText()).toContain('You don\'t have permission to access this page.');
+    expect(messagesPage.errorMessages.getText()).toContain(youDontHavePermissionsMsg);
   });
 
   it('try to create blog post with big sentence without permission', () => {
@@ -31,6 +33,6 @@ describe('Choko - Blog', () => {
     createBlogPostPage.createPost(blogData);
 
     expect(messagesPage.errorMessage.isDisplayed()).toBe(true);
-    expect(messagesPage.errorMessages.getText()).toContain('You don\'t have permission to access this page.');
+    expect(messagesPage.errorMessages.getText()).toContain(youDontHavePermissionsMsg);
   });
 });

@@ -17,6 +17,8 @@ describe('Choko - Create account', () => {
     password2: pass
   };
 
+  const passwordMustMatchMsg = 'Passwords must match.';
+
   beforeEach(() => {
     creatAccountPage.visit();
   });
@@ -27,7 +29,7 @@ describe('Choko - Create account', () => {
     creatAccountPage.createAccount(userData);
 
     expect(messagesPage.errorMessage.isDisplayed()).toBe(true);
-    expect(messagesPage.errorMessage.getText()).toEqual('Passwords must match.');
+    expect(messagesPage.errorMessage.getText()).toEqual(passwordMustMatchMsg);
   });
 
   it('password not match, using defaultEmail set to "choko.org"', () => {
@@ -37,6 +39,6 @@ describe('Choko - Create account', () => {
     creatAccountPage.createAccount(userData);
 
     expect(messagesPage.errorMessage.isDisplayed()).toBe(true);
-    expect(messagesPage.errorMessage.getText()).toEqual('Passwords must match.');
+    expect(messagesPage.errorMessage.getText()).toEqual(passwordMustMatchMsg);
   });
 });
