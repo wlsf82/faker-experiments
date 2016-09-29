@@ -1,24 +1,29 @@
 'use strict'
 
 const faker = require('faker');
+const Crud = require('../page-objects/crud.po');
 
 describe('CRUD Sample', () => {
+  const crud = new Crud();
+
   it('add new customer', () => {
-    const name = faker.name.findName();
-    const email = faker.internet.email();
-    const address = faker.address.streetName() + ', ' + faker.random.number();
-    const city = faker.address.city();
-    const country = faker.address.country();
+    const customerData = {
+      name: faker.name.findName(),
+      email: faker.internet.email(),
+      address: faker.address.streetName() + ', ' + faker.random.number(),
+      city: faker.address.city(),
+      country: faker.address.country()
+    };
 
-    browser.get('http://demos.angularcode.com/AngularCodeCustomerManagerApp/#/edit-customer/0');
+    crud.visit();
 
-    element(by.model('customer.customerName')).sendKeys(name);
-    element(by.model('customer.email')).sendKeys(email);
-    element(by.model('customer.address')).sendKeys(address);
-    element(by.model('customer.city')).sendKeys(city);
-    element(by.model('customer.country')).sendKeys(country);
-    element(by.css('button[ng-click="saveCustomer(customer);"]')).click();
+    crud.nameField.sendKeys(customerData.name);
+    crud.emailAddressField.sendKeys(customerData.email);
+    crud.addressField.sendKeys(customerData.address);
+    crud.cityField.sendKeys(customerData.city);
+    crud.countryField.sendKeys(customerData.country);
+    crud.addNewCustomerButton.click();
 
-    expect(element.all(by.repeater('data in customers')).first().getText()).toContain(name);
+    expect(crud.firstCustomerInTheList.getText()).toContain(customerData.name);
   });
 });
