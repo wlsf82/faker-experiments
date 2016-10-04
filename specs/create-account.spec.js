@@ -32,7 +32,7 @@ describe('Choko - Create account', () => {
     expect(messagesPage.errorMessage.getText()).toEqual(passwordMustMatchMsg);
   });
 
-  it('password not match, using defaultEmail set to "choko.org"', () => {
+  it('password not match, using defaultEmail set to \'choko.org\'', () => {
     userData.email = faker.internet.email(userData.randomName, userData.randomName, 'choko.org');
     userData.password2 = faker.internet.password();
 
