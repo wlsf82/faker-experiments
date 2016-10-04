@@ -5,7 +5,7 @@ const CreateAccountPage = require('../page-objects/create-account.po');
 const MessagesPage = require('../page-objects/messages.po');
 
 describe('Choko - Create account', () => {
-  const creatAccountPage = new CreateAccountPage();
+  const createAccountPage = new CreateAccountPage();
   const messagesPage = new MessagesPage();
 
   const pass = faker.internet.password();
@@ -20,13 +20,13 @@ describe('Choko - Create account', () => {
   const passwordMustMatchMsg = 'Passwords must match.';
 
   beforeEach(() => {
-    creatAccountPage.visit();
+    createAccountPage.visit();
   });
 
   it('password not match', () => {
     userData.password2 = faker.internet.password();
 
-    creatAccountPage.createAccount(userData);
+    createAccountPage.createAccount(userData);
 
     expect(messagesPage.errorMessage.isDisplayed()).toBe(true);
     expect(messagesPage.errorMessage.getText()).toEqual(passwordMustMatchMsg);
@@ -36,9 +36,19 @@ describe('Choko - Create account', () => {
     userData.email = faker.internet.email(userData.randomName, userData.randomName, 'choko.org');
     userData.password2 = faker.internet.password();
 
-    creatAccountPage.createAccount(userData);
+    createAccountPage.createAccount(userData);
 
     expect(messagesPage.errorMessage.isDisplayed()).toBe(true);
     expect(messagesPage.errorMessage.getText()).toEqual(passwordMustMatchMsg);
+  });
+
+  it('invalid email', () => {
+    userData.email = faker.hacker.verb();
+    userData.password = pass;
+    userData.password2 = pass;
+
+    createAccountPage.createAccount(userData);
+    expect(messagesPage.errorMessage.isDisplayed()).toBe(true);
+    expect(messagesPage.errorMessage.getText()).toEqual('Email is required.');
   });
 });
