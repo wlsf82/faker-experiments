@@ -5,7 +5,7 @@ const SpecReporter = require('jasmine-spec-reporter');
 
 const reporter = new HtmlScreenshotReporter({
   dest: 'screenshots',
-  filename: 'my-report.html'
+  filename: 'test-report.html'
 });
 
 module.exports.config = {
