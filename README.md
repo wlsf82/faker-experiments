@@ -16,7 +16,7 @@ npm install
 ## Running tests
 
 ```
-protractor
+npm test
 ```
 
 ___
